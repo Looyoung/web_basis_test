@@ -9,19 +9,20 @@
         //而 id, name, value 是具体节点的属性.
         window.onload = function () {
             var bjNode = document.getElementById("bj");
-            alert(bjNode.nodeName);
-            alert(bjNode.nodeType);
-            alert(bjNode.nodeValue);
+            alert(bjNode.nodeName); //元素节点名 LI
+            alert(bjNode.nodeType); //元素节点类型 1
+            alert(bjNode.nodeValue);    //元素节点没有 nodevalue 属性值 null
+            alert(bjNode.getAttributeNode("style").nodeValue); //style="color: cadetblue"
 
             var nameAttr = document.getElementById("name").getAttributeNode("name");
-            alert(nameAttr.nodeName);
-            alert(nameAttr.nodeType);
-            alert(nameAttr.nodeValue);
+            alert(nameAttr.nodeName);  //属性节点属性名 name
+            alert(nameAttr.nodeType);   //属性节点:2
+            alert(nameAttr.nodeValue);  // 属性节点的值 username
 
             var textNode = bjNode.firstChild;
             alert(textNode.nodeType); //文本节点: 0
             alert(textNode.nodeName); //节点名: #text
-            alert(textNode.nodeValue); //文本节点的 nodeValue 属性值: 文本值本身.
+            alert(textNode.nodeValue); //文本节点的 nodeValue 属性值: 文本值本身 北京
         }
 
     </script>
@@ -29,7 +30,7 @@
 <body>
     <p>你喜欢哪个城市？</p>
     <ol id="city">
-        <li id="bj" name="BeiJing">北京</li>
+        <li id="bj" name="BeiJing" style="color: cadetblue">北京</li>
         <li>上海</li>
         <li>广州</li>
         <li>深圳</li>
