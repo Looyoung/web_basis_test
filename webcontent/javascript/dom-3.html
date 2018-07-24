@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>JavaScript DOM 3</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            //1. 获取 #city 节点.
+            var cityNode = document.getElementById("city");
+
+            //2. 利用元素节点的 childNodes 方法可以获取指定元素节点的所有子节点.
+            //但该方法不实用.
+            alert("citynode childnodes' length --> " + cityNode.childNodes.length); // 9??
+
+            //3. 获取 #city 节点的所有 li 子节点.
+            var cityNodes = cityNode.getElementsByTagName("li"); // 4
+            alert("citynodes' length -->" + cityNodes.length);
+
+            //4. 获取指定节点的第一个子节点和最后一个子节点.
+            alert(cityNode.firstChild); // [object Text]
+            alert(cityNode.lastChild); // [object Text]
+
+            alert(cityNodes[1].firstChild.nodeValue); //上海
+        }
+    </script>
+</head>
+<body>
+<p>你喜欢哪个城市？</p>
+<ol id="city">
+    <li id="bj" name="BeiJing">北京</li>
+    <li>上海</li>
+    <li>广州</li>
+    <li>深圳</li>
+</ol>
+<br/>
+<hr/>
+<br/>
+<p>你喜欢玩什么游戏？</p>
+<ul id="game">
+    <li id="wz">王者荣耀</li>
+    <li>英雄联盟</li>
+    <li>穿越火线</li>
+    <li>侠盗飞车</li>
+</ul>
+<br/>
+<hr/>
+<br/>
+input your name: &nbsp;
+<input type="text" name="name" id="name" value="louis"/>
+</body>
+</html>

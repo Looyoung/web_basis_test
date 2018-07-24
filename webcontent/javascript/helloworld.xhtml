@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="zh-CN">
+<head>
+    <title>Louis</title>
+    <script type="text/javascript">
+        //1. 当整个 HTML 文档完全加载成功后触发 window.onload 事件.
+        //事件触发时, 执行后面 function 里边的函数体.
+        window.onload = function () {
+            //2. 获取所有的 button 节点. 并取得第一个元素
+            var button = document.getElementsByTagName("button")[0];
+            //3. 为 button 的 onclick 事件赋值: 当点击 button 时, 执行函数体
+            button.onclick = function () {
+                //4. 弹出 hello Louis
+                alert("hello Louis!!!");
+            }
+        }
+    </script>
+</head>
+<body>
+<button>Click me</button>
+<br/><br/>
+<!-- HTML 代码和 JS 代码耦合在一起. -->
+<button onclick="alert('hello Louissss');">Click mee</button>
+</body>
+</html>
