@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript DOM 8</title>
+    <script type="text/javascript">
+        // 测试 replaceChild 方法
+        window.onload = function () {
+            var bjNode = document.getElementById("bj");
+            var wzNode = document.getElementById("wz");
+            var gameNode = document.getElementById("game");
+            //gameNode.replaceChild(bjNode,wzNode);  // 和 insertBefore 同样具有移动节点的效果
+            replaceEach(bjNode,wzNode);
+        }
+
+        // 自定义互换两个节点
+        function replaceEach(aNode, bNode) {
+            //1. 获取 aNode 和 bNode 的父节点. 使用 parentNode 属性
+            var aParent = aNode.parentNode;
+            var bParent = bNode.parentNode;
+            if(aParent && bParent){
+                //2. 克隆 aNode 或 bNode. 使用 cloneNode(boolean deep)
+                var aNode2 = aNode.cloneNode(true);
+                //3. 分别调用 aNode 的父节点和 bNode 的父节点的 replaceChild()
+                //方法实现节点的互换
+                //aParent.replaceChild(bNode,aNode);  // ×××
+                bParent.replaceChild(aNode2,bNode);
+                aParent.replaceChild(bNode,aNode);
+            }
+        }
+    </script>
+</head>
+<body>
+<p>你喜欢哪个城市？</p>
+<ol id="city">
+    <li id="bj" name="BeiJing">北京</li>
+    <li>上海</li>
+    <li>广州</li>
+    <li>深圳</li>
+</ol>
+<br/><hr/><br/>
+<p>你喜欢玩什么游戏？</p>
+<ul id="game">
+    <li id="wz">王者荣耀</li>
+    <li>英雄联盟</li>
+    <li>穿越火线</li>
+    <li>侠盗飞车</li>
+</ul>
+<br/><hr/><br/>
+select your gender:
+<input type="radio" name="gender" value="male"/>male
+<input type="radio" name="gender" value="female"/>female
+<br/><hr/><br/>
+input your name:
+<input type="text" name="username" value="input your name here"/>
+</body>
+</html>
