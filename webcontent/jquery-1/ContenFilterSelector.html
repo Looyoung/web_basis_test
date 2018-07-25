@@ -26,34 +26,31 @@
             display: none;
         }
     </style>
-    <script src="jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
         $(function () {
-            $("#btn1").click(function () {
-                $("#one").css("background","#ffbbaa");
+            $("#btn1").click(function(){
+                $("div:contains('di')").css("background", "#ff0000");
             });
-            $("#btn2").click(function () {
-                $(".mini").css("background","#aaffdd");
+            $("#btn2").click(function(){
+                $("div:empty").css("background", "#afff00");
             });
-            $("#btn3").click(function () {
-               $("div").css("background","#ddffaa");
+            $("#btn3").click(function(){
+                $("div:has(.mini)").css("background", "#0ff0ff");
             });
-            $("#btn4").click(function () {
-               $("*").css("background","#ccffff");
-            });
-            $("#btn5").click(function () {
-                $("span,#two").css("background","#ffffaa");
-            });
-        })
-    </script>
 
+            $("#btn4").click(function(){
+                $("div:parent").css("background", "#ffccff");
+                //$("div:not(:empty)").css("background", "#ccffaa"); //同上
+            });
+        });
+    </script>
 </head>
 <body>
-    <input type="button" value="选择 id 为 one 的元素" id="btn1" />
-    <input type="button" value="选择 class 为 mini 的所有元素" id="btn2" />
-    <input type="button" value="选择 元素名是 div 的所有元素" id="btn3" />
-    <input type="button" value="选择 所有的元素" id="btn4" />
-    <input type="button" value="选择 所有的 span 元素和id为two的元素" id="btn5" />
+    <input type="button" value="选择 含有文本 'di' 的 div 元素" id="btn1" />
+    <input type="button" value="选择不包含子元素(或者文本元素) 的 div 空元素" id="btn2" />
+    <input type="button" value="选择含有 class 为 mini 元素的 div 元素" id="btn3" />
+    <input type="button" value="选择含有子元素(或者文本元素)的div元素" id="btn4" />
 
     <br><br>
     <div class="one" id="one">
@@ -82,7 +79,6 @@
     <div>
         包含input的type为"hidden"的div<input type="hidden" size="8">
     </div>
-    <span id="span">^^span元素^^</span>
-
+    <div id="mover">正在执行动画的div元素.</div>
 </body>
 </html>

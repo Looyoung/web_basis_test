@@ -10,16 +10,21 @@
     <script type="text/javascript">
         $(function(){
             $("#checkAll").click(function(){
-                if ($(this).prop("checked")) {
-                    $(":checkbox[name='items']").prop("checked", true);
-                }else {
-                    $(":checkbox[name='items']").prop("checked", false);
-                }
+                // if ($(this).prop("checked")) {
+                //     $(":checkbox[name='items']").prop("checked", true);
+                // }else {
+                //     $(":checkbox[name='items']").prop("checked", false);
+                // }
+                var flag = $(this).prop('checked');
+                $(":checkbox[name='items']").prop("checked", flag);
             });
 
-            $(':checkbox[name=items]').click(function(){
-                var $checkedArray = $(':checkbox[name=items]');
-                $('#checkAll').prop('checked',$checkedArray.length==$checkedArray.filter(':checked').length);
+            // $(':checkbox[name=items]').click(function(){
+            //     var $checkedArray = $(':checkbox[name=items]');
+            //     $('#checkAll').prop('checked',$checkedArray.length==$checkedArray.filter(':checked').length);
+            // });
+            $(":checkbox[name='items']").click(function () {
+                $('#checkAll').prop('checked',$(':checkbox[name=items]').length==$(':checkbox[name=items]:checked').length);
             });
         })
     </script>
