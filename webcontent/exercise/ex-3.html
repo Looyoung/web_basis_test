@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加自定义节点</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            function showContent(liNode){
+                alert("^_^#" + liNode.firstChild.nodeValue);
+            }
+            // 为每个 li 节点添加点击事件
+            var liNodes = document.getElementsByTagName("li");
+            for(var i = 0; i < liNodes.length; i++){
+                liNodes[i].onclick = function(){
+                    showContent(this);
+                }
+            }
+
+            // 获取 submit 节点
+            var submit = document.getElementById("submit");
+            // 为 submit 按钮添加响应事件
+            submit.onclick = function () {
+                // 获取 radio 中选中的类型
+                var types = document.getElementsByName("type");
+                var typeVal = null;
+                for (var i = 0; i < types.length; i++){
+                    if(types[i].checked){
+                        typeVal = types[i].value;
+                        break
+                    }
+                }
+                if(typeVal == null){
+                    alert("请选择类型!");
+                    return false;
+                }
+                // 获取 name 文本框节点
+                var nameAttr = document.getElementsByName("name")[0];
+                var nameValue = nameAttr.value;
+
+                nameAttr.value = nameValue.trim();
+                if(nameValue == ""){
+                    alert("请输入内容!");
+                    return false;
+                }
+
+                // 利用 namevalue 创建要添加的节点
+                var liNode = document.createElement("li");
+                var textNode = document.createTextNode(nameValue);
+                liNode.appendChild(textNode);
+                liNode.onclick = function () {
+                    showContent(this);
+                }
+
+                // 将新创建的节点添加到 typeval 所对应的列表下
+                document.getElementById(typeVal).appendChild(liNode);
+
+                //在 onclick 响应函数的结尾处添加 return false, 就可以取消提交按钮的
+                //默认行为.
+                return false;
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <p>你喜欢哪个国家?</p>
+    <ul id="country">
+        <li id="cn" name="China">中国</li>
+        <li>法国</li>
+        <li>阿根廷</li>
+        <li>葡萄牙</li>
+    </ul>
+
+    <br><br>
+    <p>你有什么爱好?</p>
+    <ol id="hobby">
+        <li id="sing">唱歌</li>
+        <li>游泳</li>
+        <li>跑步</li>
+        <li>网游</li>
+    </ol>
+
+    <br><br>
+    <form action="ex-1.html" name="myForm">
+        <input type="radio" name="type" value="country"/>国家
+        <input type="radio" name="type" value="hobby"/>爱好
+        name:<input type="text" name="name"/>
+        <input type="submit" id="submit" value="Submit"/>
+    </form>
+</body>
+</html>

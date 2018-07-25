@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击节点,弹出文本值</title>
+    <script type="text/javascript">
+        //点击每个 li 节点, 都弹出其文本值.
+
+        //1. 获取所有的 li 节点
+        window.onload = function () {
+            var liNodes = document.getElementsByTagName("li");
+            //2. for 循环进行遍历. 得到每一个 li 节点
+            for (var i = 0; i < liNodes.length; i++){
+                //3 为每一个 li 节点添加 onclick 响应函数.
+                liNodes[i].onclick = function () {
+                    //4. 在响应函数中获取当前节点的文本节点的文本值
+                    //5. alert 打印.
+                    //this 为正在响应事件的那个节点.
+                    alert(this.innerHTML);
+                    //alert(this.firstChild.nodeValue);  //同上
+                }
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <p>你喜欢哪个国家?</p>
+    <ul id="country">
+        <li id="cn" name="China">中国</li>
+        <li>法国</li>
+        <li>阿根廷</li>
+        <li>葡萄牙</li>
+    </ul>
+
+    <br><br>
+    <p>你有什么爱好?</p>
+    <ol id="hobby">
+        <li id="sing">唱歌</li>
+        <li>游泳</li>
+        <li>跑步</li>
+        <li>网游</li>
+    </ol>
+
+    <br><br>
+    name: <input type="text" name="username" id="name" value="louis"/>
+</body>
+</html>

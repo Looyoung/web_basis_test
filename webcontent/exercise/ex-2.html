@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击节点,+-^^</title>
+    <script type="text/javascript">
+        window.onload = function(){
+
+            //点击每个 li 节点, 若 li 节点的文本值没有 ^^ 开头, 加上
+            //有, 则去除
+
+            var liNodes = document.getElementsByTagName("li");
+            for(var i = 0; i < liNodes.length; i++){
+                liNodes[i].onclick = function(){
+                    var clickNodeValue = this.firstChild.nodeValue;
+
+                    var reg = /^>{3}/g;
+                    var reg2 = /^\^{3}/g;  // ^^^北京  ^ 是脱节字符表示以什么开头,要使用^进行匹配需要 \^ 转义
+                    if(reg2.test(clickNodeValue)){
+                        clickNodeValue = clickNodeValue.replace(reg2, "");
+                    }else{
+                        //clickNodeValue = ">>>" + clickNodeValue;
+                        clickNodeValue = "^^^" + clickNodeValue;
+                    }
+
+                    this.firstChild.nodeValue = clickNodeValue;
+                }
+            }
+
+            /*
+            //1. 使用正则表达式判断是否已 ^^ 开始
+            //2. 调用字符串的 replace(reg, str) 方法除去指定的字符串.
+
+            var str = "^^abc";
+            var reg = /^\^{2}/g;
+            alert(reg.test(str)); //true
+            str = str.replace(reg, "");
+            alert(str);
+
+            var str2 = "abc";
+            alert(reg.test(str2)); //false
+            */
+        }
+    </script>
+
+</head>
+<body>
+    <p>你喜欢哪个国家?</p>
+    <ul id="country">
+        <li id="cn" name="China">中国</li>
+        <li>法国</li>
+        <li>阿根廷</li>
+        <li>葡萄牙</li>
+    </ul>
+
+    <br><br>
+    <p>你有什么爱好?</p>
+    <ol id="hobby">
+        <li id="sing">唱歌</li>
+        <li>游泳</li>
+        <li>跑步</li>
+        <li>网游</li>
+    </ol>
+
+    <br><br>
+    name: <input type="text" name="username" id="name" value="louis"/>
+</body>
+</html>

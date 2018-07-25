@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通讯录管理</title>
+    <style>
+        h1{text-align: center;color: deepskyblue}
+        div{text-align: center}
+        hr{color: cadetblue;}
+    </style>
+    <script type="text/javascript">
+        /*
+         * 为 #employeetable 的所有的 a 节点添加 Onclick 响应函数:
+         * 1. 弹出确认对话框: 确定要删除 xx 的信息吗? xx 为当前 a 节点所在的 td 所在的 tr 的
+         * 第一个 td 子节点的文本值, 且要去除前后空格.
+         * 2. 若点击 "确认" , 则删除 a 节点的所在的 行
+         *
+         * 注意:
+         * 1. a 节点是一个超级链接, 可以在其 onclick 事件中通过返回 false, 来取消默认行为
+         * 2. tr 的直接父节点为 tbody, 而不是 table
+         * 3. 可以把去除前后空格的代码写成一个 trim(str) 函数.
+         *
+         * 为 #addEmpButton 添加 onclick 响应函数:
+         * 1. 获取 #name, #email, #salary 的文本框的值
+         * 2. 利用 1 获取的文本值创建 3 个 td 节点, 在创建一个 tr 节点. 并把以上的 3 个 td
+         *    节点价位 tr 节点的子节点
+            <tr>
+                <td>Tom</td>
+                <td>tom@tom.com</td>
+                <td>5000</td>
+            </tr>
+         * 3. 在创建一个 td 节点: <td><a href="deleteEmp?id=xxx">Delete</a></td>
+         * 4. 把 3 创建的 td 也加为 tr 的子节点.
+         * 5. 再把 tr 加为 #employeetable 的 tbody 子节点的子节点.
+         * 6. 为新创建的 tr 的 a 子节点添加 Onclick 响应函数, 使其也具备删除的功能.
+         *
+         *
+         */
+        window.onload = function () {
+            // 删除信息函数
+            function removeTr(aNode) {
+                var trNode = aNode.parentNode.parentNode;
+                var textContent = trNode.getElementsByTagName("td")[0].firstChild.nodeValue;
+                textContent = textContent.trim();
+                var flag = confirm("你确定要删除 "+textContent+" 的信息吗?");
+                if (flag){
+                    trNode.parentNode.removeChild(trNode);
+                }
+                return false;
+            }
+
+            var aNodes = document.getElementById("friendTable").getElementsByTagName("a");
+            for (var i = 0; i < aNodes.length; i++){
+                aNodes[i].onclick = function () {
+                    removeTr(this);
+                    return false;
+                }
+            }
+
+            document.getElementById("addButton").onclick = function () {
+                //value: 用于获取 html 表单元素的值
+                //alert(this.value); //
+                //nodeValue: 用于获取文本节点的文本值.
+                //alert(this.nodeValue); //null
+
+                var nameVal = document.getElementById("name").value;
+                var emailVal = document.getElementById("email").value;
+                var phoneVal = document.getElementById("phone").value;
+
+                var nameTd = document.createElement("td");
+                nameTd.appendChild(document.createTextNode(nameVal));
+
+                var emailTd = document.createElement("td");
+                emailTd.appendChild(document.createTextNode(emailVal));
+
+                var phoneTd = document.createElement("td");
+                phoneTd.appendChild(document.createTextNode(phoneVal));
+
+                var tr = document.createElement("tr");
+
+                tr.appendChild(nameTd);
+                tr.appendChild(emailTd);
+                tr.appendChild(phoneTd);
+
+                //<td><a href="deleteEmp?id=xxx">Delete</a></td>
+                var aNode = document.createElement("a");
+                aNode.href = "deleteEmp?id=xxx";
+                aNode.appendChild(document.createTextNode("Delete"));
+                var aTd = document.createElement("td");
+                aTd.appendChild(aNode);
+
+                tr.appendChild(aTd);
+
+                aNode.onclick = function(){
+                    removeTr(this);
+                    return false;
+                }
+
+                document.getElementById("friendTable")
+                    .appendChild(tr);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>添加新员工</h1>
+    <div>
+        name:<input type="text" id="name" name="name"/>
+        <br/>
+        email:<input type="text" id="email" name="email"/>
+        <br/>
+        phone:<input type="phone" id="phone" name="name"/>
+        <br/>
+        <button id="addButton" value="add">Submit</button>
+    </div>
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+    <table align="center" id="friendTable" border="1" cellspacing="0" cellpadding="5">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@tom.com</td>
+            <td>18813291001</td>
+            <td><a href="delete?id=001">Delete</a></td>
+        </tr>
+        <tr>
+            <td>
+                Jerry
+            </td>
+            <td>jerry@sohu.com</td>
+            <td>18813291002</td>
+            <td><a href="delete?id=002">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>bob@tom.com</td>
+            <td>18813291003</td>
+            <td><a href="delete?id=003">Delete</a></td>
+        </tr>
+    </table>
+</body>
+</html>
