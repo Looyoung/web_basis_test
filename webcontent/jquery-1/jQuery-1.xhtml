@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>jQuery 1</title>
+    <!-- 导入 jQuery 库 -->
+    <script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#checkAll").click(function(){
+                if ($(this).prop("checked")) {
+                    $(":checkbox[name='items']").prop("checked", true);
+                }else {
+                    $(":checkbox[name='items']").prop("checked", false);
+                }
+            });
+
+            $(':checkbox[name=items]').click(function(){
+                var $checkedArray = $(':checkbox[name=items]');
+                $('#checkAll').prop('checked',$checkedArray.length==$checkedArray.filter(':checked').length);
+            });
+        })
+    </script>
+</head>
+<body>
+    <form action="" method="post">
+        你喜欢的电影类型?<input type="checkbox" id="checkAll"/>全选/全不选
+        <br/>
+        <input type="checkbox" name="items" value="comedy"/>喜剧
+        <br/>
+        <input type="checkbox" name="items" value="action"/>动作
+        <br/>
+        <input type="checkbox" name="items" value="tragedy"/>悲剧
+        <br/>
+        <input type="checkbox" name="items" value="romance"/>爱情
+    </form>
+</body>
+</html>
